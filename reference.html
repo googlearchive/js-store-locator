@@ -1,0 +1,1388 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Store Locator Reference Documentation</title>
+    <style type="text/css">
+      @import 'https://developers.google.com/css/screen.css';
+      body {
+        padding: 1em;
+        max-width: 70em;
+        min-width: inherit;
+        padding-left: 15em;
+      }
+      .docs section h2 {
+        font-weight: bold;
+      }
+      #toc {
+        position: fixed;
+        top: 0;
+        left: 0;
+        padding: 0 10px;
+        background: white;
+      }
+    </style>
+  </head>
+  <body class="docs">
+    <h1 class="page-title">Store Locator Reference Documentation</h1>
+    <p class="note">Types are documented using <a target="_blank"
+        href="//code.google.com/closure/compiler/docs/js-for-compiler.html#types">
+      Closure Compiler type expressions</a>.</p>
+    <section id="toc">
+      <h3>Classes</h3>
+      <ul>
+        
+        <li><a href="#storeLocator.DataFeed">DataFeed</a></li>
+        
+        <li><a href="#storeLocator.Feature">Feature</a></li>
+        
+        <li><a href="#storeLocator.FeatureSet">FeatureSet</a></li>
+        
+        <li><a href="#storeLocator.Panel">Panel</a></li>
+        
+        <li><a href="#storeLocator.PanelOptions">PanelOptions</a></li>
+        
+        <li><a href="#storeLocator.StaticDataFeed">StaticDataFeed</a></li>
+        
+        <li><a href="#storeLocator.Store">Store</a></li>
+        
+        <li><a href="#storeLocator.View">View</a></li>
+        
+        <li><a href="#storeLocator.ViewOptions">ViewOptions</a></li>
+        
+      </ul>
+    </section>
+
+    
+    <section id="storeLocator.DataFeed">
+    <h2>storeLocator.DataFeed</h2>
+    <p>Data feed that returns stores based on a given bounds and a set of features.</p>
+    
+      <h3>Example</h3>
+      <div class="example">
+      <pre>
+// always returns the same stores
+function SimpleStaticFeed(stores) {
+  this.stores = stores;
+}
+SimpleStaticFeed.prototype.getStores = function(bounds, features, callback) {
+  callback(this.stores);
+};
+new <a href="#storeLocator.View">storeLocator.View</a>(map, new SimpleStaticFeed());
+</pre>
+      </div>
+    
+    
+    
+    
+    
+      
+      <h3>Interface</h3>
+      
+      <table>
+      <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Returns</th>
+      </tr>
+      </thead>
+      
+        <tr>
+          <td>
+          <code>getStores(<code>bounds:<a href="//code.google.com/apis/maps/documentation/javascript/reference.html#LatLngBounds" target="mapref">google.maps.LatLngBounds</a>, features:<a href="#storeLocator.FeatureSet">storeLocator.FeatureSet</a>, callback:function(Array.&lt;!<a href="#storeLocator.Store">storeLocator.Store</a>&gt;)</code>)</code>
+          </td>
+          <td>Fetch stores, based on bounds to search within, and features to filter on.</td>
+          <td>
+            
+            <code>undefined</code>
+            
+          </td>
+        </tr>
+      
+      </table>
+    
+    
+    </section>
+    
+    <section id="storeLocator.Feature">
+    <h2>storeLocator.Feature</h2>
+    <p>Representation of a feature of a store. (e.g. 24 hours, BYO, etc).</p>
+    
+      <h3>Example</h3>
+      <div class="example">
+      <pre>
+var feature = new <a href="#storeLocator.Feature">storeLocator.Feature</a>('24hour', 'Open 24 Hours');
+</pre>
+      </div>
+    
+    
+      <h3>Constructor</h3>
+      
+      <table>
+        <thead>
+          <tr>
+          <th>Parameter</th>
+          <th>Type</th>
+          <th width="100%">Description</th>
+          </tr>
+        </thead>
+        
+          <tr>
+            <td>
+            <code>id</code>
+            </td>
+            <td nowrap>
+            <code>string</code>
+            </td>
+            <td>
+            unique identifier for this feature.
+            </td>
+          </tr>
+        
+          <tr>
+            <td>
+            <code>name</code>
+            </td>
+            <td nowrap>
+            <code>string</code>
+            </td>
+            <td>
+            display name of this feature.
+            </td>
+          </tr>
+        
+      </table>
+      
+    
+    
+    
+      
+      <h3>Methods</h3>
+      
+      <table>
+      <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Returns</th>
+      </tr>
+      </thead>
+      
+        <tr>
+          <td>
+          <code>getDisplayName(<code></code>)</code>
+          </td>
+          <td>Gets this Feature's display name.</td>
+          <td>
+            
+            
+              <code>string</code>
+              this feature's display name.
+            
+            
+          </td>
+        </tr>
+      
+        <tr>
+          <td>
+          <code>getId(<code></code>)</code>
+          </td>
+          <td>Gets this Feature's ID.</td>
+          <td>
+            
+            
+              <code>string</code>
+              this feature's ID.
+            
+            
+          </td>
+        </tr>
+      
+      </table>
+    
+    
+    </section>
+    
+    <section id="storeLocator.FeatureSet">
+    <h2>storeLocator.FeatureSet</h2>
+    <p>A mutable, ordered set of <code><a href="#storeLocator.Feature">storeLocator.Feature</a></code>s.</p>
+    
+      <h3>Example</h3>
+      <div class="example">
+      <pre>
+var feature1 = new <a href="#storeLocator.Feature">storeLocator.Feature</a>('1', 'Feature One');
+var feature2 = new <a href="#storeLocator.Feature">storeLocator.Feature</a>('2', 'Feature Two');
+var feature3 = new <a href="#storeLocator.Feature">storeLocator.Feature</a>('3', 'Feature Three');
+
+var featureSet = new <a href="#storeLocator.FeatureSet">storeLocator.FeatureSet</a>(feature1, feature2, feature3);
+</pre>
+      </div>
+    
+    
+      <h3>Constructor</h3>
+      
+      <table>
+        <thead>
+          <tr>
+          <th>Parameter</th>
+          <th>Type</th>
+          <th width="100%">Description</th>
+          </tr>
+        </thead>
+        
+          <tr>
+            <td>
+            <code>var_args</code>
+            </td>
+            <td nowrap>
+            <code>...<a href="#storeLocator.Feature">storeLocator.Feature</a></code>
+            </td>
+            <td>
+            the initial features to add to
+the set.
+            </td>
+          </tr>
+        
+      </table>
+      
+    
+    
+    <h3>Properties/Constants</h3>
+    <table>
+    <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th width="100%">Description</th>
+    </tr>
+    </thead>
+    
+    <tr>
+      <td><code>NONE</code></td>
+      <td><code><a href="#storeLocator.FeatureSet">storeLocator.FeatureSet</a></code></td>
+      <td>Empty feature set.</td>
+    </tr>
+    
+    </table>
+    
+    
+      
+      <h3>Methods</h3>
+      
+      <table>
+      <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Returns</th>
+      </tr>
+      </thead>
+      
+        <tr>
+          <td>
+          <code>add(<code>feature:<a href="#storeLocator.Feature">storeLocator.Feature</a></code>)</code>
+          </td>
+          <td>Adds a feature to the set.</td>
+          <td>
+            
+            <code>undefined</code>
+            
+          </td>
+        </tr>
+      
+        <tr>
+          <td>
+          <code>asList(<code></code>)</code>
+          </td>
+          <td>Get the contents of this set as an Array.</td>
+          <td>
+            
+            
+              <code>Array.&lt;!<a href="#storeLocator.Feature">storeLocator.Feature</a>&gt;</code>
+              the features in the set, in the order
+they were inserted.
+            
+            
+          </td>
+        </tr>
+      
+        <tr>
+          <td>
+          <code>contains(<code>feature:!<a href="#storeLocator.Feature">storeLocator.Feature</a></code>)</code>
+          </td>
+          <td>Check if a feature exists within this set.</td>
+          <td>
+            
+            
+              <code>boolean</code>
+              true if the set contains the given feature.
+            
+            
+          </td>
+        </tr>
+      
+        <tr>
+          <td>
+          <code>getById(<code>featureId:string</code>)</code>
+          </td>
+          <td>Gets a Feature object from the set, by the feature id.</td>
+          <td>
+            
+            
+              <code><a href="#storeLocator.Feature">storeLocator.Feature</a></code>
+              the feature, if the set contains it.
+            
+            
+          </td>
+        </tr>
+      
+        <tr>
+          <td>
+          <code>remove(<code>feature:!<a href="#storeLocator.Feature">storeLocator.Feature</a></code>)</code>
+          </td>
+          <td>Removes a feature from the set, if it already exists in the set. If it does
+not already exist in the set, this function is a no op.</td>
+          <td>
+            
+            <code>undefined</code>
+            
+          </td>
+        </tr>
+      
+        <tr>
+          <td>
+          <code>toggle(<code>feature:!<a href="#storeLocator.Feature">storeLocator.Feature</a></code>)</code>
+          </td>
+          <td>Adds the given feature to the set, if it doesn't exist in the set already.
+Else, removes the feature from the set.</td>
+          <td>
+            
+            <code>undefined</code>
+            
+          </td>
+        </tr>
+      
+      </table>
+    
+    
+    </section>
+    
+    <section id="storeLocator.Panel">
+    <h2>storeLocator.Panel</h2>
+    <p>An info panel, to complement the map view.
+Provides a list of stores, location search, feature filter, and directions.</p>
+    
+      <h3>Example</h3>
+      <div class="example">
+      <pre>
+var container = document.getElementById('panel');
+var panel = new <a href="#storeLocator.Panel">storeLocator.Panel</a>(container, {
+  view: view,
+  locationSearchLabel: 'Location:'
+});
+<a href="//code.google.com/apis/maps/documentation/javascript/reference.html#event" target="mapref">google.maps.event.addListener</a>(panel, 'geocode', function(result) {
+  geocodeMarker.setPosition(result.geometry.location);
+});
+</pre>
+      </div>
+    
+    
+      <h3>Constructor</h3>
+      
+      <table>
+        <thead>
+          <tr>
+          <th>Parameter</th>
+          <th>Type</th>
+          <th width="100%">Description</th>
+          </tr>
+        </thead>
+        
+          <tr>
+            <td>
+            <code>el</code>
+            </td>
+            <td nowrap>
+            <code>!Node</code>
+            </td>
+            <td>
+            the element to contain this panel.
+            </td>
+          </tr>
+        
+          <tr>
+            <td>
+            <code>opt_options</code>
+            </td>
+            <td nowrap>
+            <code><a href="#storeLocator.PanelOptions">storeLocator.PanelOptions</a></code>
+            </td>
+            <td>
+            
+            </td>
+          </tr>
+        
+      </table>
+      
+    
+    
+    
+      
+      <h3>Methods</h3>
+      
+      <table>
+      <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Returns</th>
+      </tr>
+      </thead>
+      
+        <tr>
+          <td>
+          <code>hideDirections(<code></code>)</code>
+          </td>
+          <td>Hides the directions panel.</td>
+          <td>
+            
+            <code>undefined</code>
+            
+          </td>
+        </tr>
+      
+        <tr>
+          <td>
+          <code>searchPosition(<code>searchText:string</code>)</code>
+          </td>
+          <td>Search and pan to the specified address.</td>
+          <td>
+            
+            <code>undefined</code>
+            
+          </td>
+        </tr>
+      
+        <tr>
+          <td>
+          <code>setView(<code>view:<a href="#storeLocator.View">storeLocator.View</a></code>)</code>
+          </td>
+          <td>Sets the associated View.</td>
+          <td>
+            
+            <code>undefined</code>
+            
+          </td>
+        </tr>
+      
+        <tr>
+          <td>
+          <code>showDirections(<code></code>)</code>
+          </td>
+          <td>Shows directions to the selected store.</td>
+          <td>
+            
+            <code>undefined</code>
+            
+          </td>
+        </tr>
+      
+      </table>
+    
+    
+    <h3>Events</h3>
+    <table>
+    <thead>
+    <tr>
+      <th>Name</th>
+      <th>Arguments</th>
+      <th width="100%">Description</th>
+    </tr>
+    </thead>
+    
+      <tr>
+        <td>
+        <code>featureFilter_changed</code>
+        </td>
+        <td>
+        
+          <code>None</code>
+        
+        </td>
+        <td>Fired when the <code>Panel</code>'s <code>featureFilter</code> property
+changes.</td>
+      </tr>
+    
+      <tr>
+        <td>
+        <code>geocode</code>
+        </td>
+        <td>
+        
+          <code>result:<a href="//code.google.com/apis/maps/documentation/javascript/reference.html#PlaceResult" target="mapref">google.maps.PlaceResult</a>|<wbr><a href="//code.google.com/apis/maps/documentation/javascript/reference.html#GeocoderResult" target="mapref">google.maps.GeocoderResult</a></code>
+        
+        </td>
+        <td>Fired when searchPosition has been called. This happens when the user has
+searched for a location from the location search box and/or autocomplete.</td>
+      </tr>
+    
+      <tr>
+        <td>
+        <code>selectedStore_changed</code>
+        </td>
+        <td>
+        
+          <code>None</code>
+        
+        </td>
+        <td>Fired when the <code>Panel</code>'s <code>selectedStore</code> property
+changes.</td>
+      </tr>
+    
+      <tr>
+        <td>
+        <code>stores_changed</code>
+        </td>
+        <td>
+        
+          <code>None</code>
+        
+        </td>
+        <td>Fired when the <code>Panel</code>'s <code>stores</code> property changes.</td>
+      </tr>
+    
+      <tr>
+        <td>
+        <code>view_changed</code>
+        </td>
+        <td>
+        
+          <code>None</code>
+        
+        </td>
+        <td>Fired when the <code>Panel</code>'s <code>view</code> property changes.</td>
+      </tr>
+    
+    </table>
+    
+    </section>
+    
+    <section id="storeLocator.PanelOptions">
+    <h2>storeLocator.PanelOptions</h2>
+    <p></p>
+    
+      <h3>Example</h3>
+      <div class="example">
+      see <a href="#storeLocator.Panel">storeLocator.Panel</a>
+      </div>
+    
+    
+    
+    
+    <h3>Properties/Constants</h3>
+    <table>
+    <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th width="100%">Description</th>
+    </tr>
+    </thead>
+    
+    <tr>
+      <td><code>locationSearchLabel</code></td>
+      <td><code>string</code></td>
+      <td>The label to show above the location search box. Default is "Where are you
+now?".</td>
+    </tr>
+    
+    <tr>
+      <td><code>featureFilter</code></td>
+      <td><code>boolean</code></td>
+      <td>Whether to show the feature filter picker. Default is true.</td>
+    </tr>
+    
+    <tr>
+      <td><code>directions</code></td>
+      <td><code>boolean</code></td>
+      <td>Whether to provide directions. Deafult is true.</td>
+    </tr>
+    
+    <tr>
+      <td><code>view</code></td>
+      <td><code><a href="#storeLocator.View">storeLocator.View</a></code></td>
+      <td>The store locator model to bind to.</td>
+    </tr>
+    
+    </table>
+    
+    
+    
+    </section>
+    
+    <section id="storeLocator.StaticDataFeed">
+    <h2>storeLocator.StaticDataFeed</h2>
+    <p>A DataFeed with a static set of stores. Provides sorting of stores by
+proximity and feature filtering (store must have <em>all</em> features from
+the filter).</p>
+    
+      <h3>Example</h3>
+      <div class="example">
+      <pre>
+var dataFeed = new <a href="#storeLocator.StaticDataFeed">storeLocator.StaticDataFeed</a>();
+jQuery.getJSON('stores.json', function(json) {
+  var stores = parseStores(json);
+  dataFeed.setStores(stores);
+});
+new <a href="#storeLocator.View">storeLocator.View</a>(map, dataFeed);
+</pre>
+      </div>
+    
+    
+      <h3>Constructor</h3>
+      
+      No parameters.
+      
+    
+    
+    
+      
+      <h3>Methods</h3>
+      
+      <table>
+      <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Returns</th>
+      </tr>
+      </thead>
+      
+        <tr>
+          <td>
+          <code>getStores(<code>bounds, features, callback</code>)</code>
+          </td>
+          <td></td>
+          <td>
+            
+            <code>undefined</code>
+            
+          </td>
+        </tr>
+      
+        <tr>
+          <td>
+          <code>setStores(<code>stores:!Array.&lt;!<a href="#storeLocator.Store">storeLocator.Store</a>&gt;</code>)</code>
+          </td>
+          <td>Set the stores for this data feed.</td>
+          <td>
+            
+            <code>undefined</code>
+            
+          </td>
+        </tr>
+      
+      </table>
+    
+    
+    </section>
+    
+    <section id="storeLocator.Store">
+    <h2>storeLocator.Store</h2>
+    <p>Represents a store.</p>
+    
+      <h3>Example</h3>
+      <div class="example">
+      <pre>
+var latLng = new <a href="//code.google.com/apis/maps/documentation/javascript/reference.html#LatLng" target="mapref">google.maps.LatLng</a>(40.7585, -73.9861);
+var store = new <a href="#storeLocator.Store">storeLocator.Store</a>('times_square', latLng, null);
+</pre>
+<pre>
+var features = new <a href="#storeLocator.FeatureSet">storeLocator.FeatureSet</a>(
+    view.getFeatureById('24hour'),
+    view.getFeatureById('express'),
+    view.getFeatureById('wheelchair_access'));
+
+var store = new <a href="#storeLocator.Store">storeLocator.Store</a>('times_square', latLng, features, {
+  title: 'Times Square',
+  address: '1 Times Square&lt;br>Manhattan, NY 10036'
+});
+</pre>
+<pre>
+store.distanceTo(map.getCenter());
+
+// override default info window
+store.getInfoWindowContent = function() {
+  var details = this.getDetails();
+  return '&lt;h1>' + details.title + '&lt;h1>' + details.address;
+};
+</pre>
+      </div>
+    
+    
+      <h3>Constructor</h3>
+      
+      <table>
+        <thead>
+          <tr>
+          <th>Parameter</th>
+          <th>Type</th>
+          <th width="100%">Description</th>
+          </tr>
+        </thead>
+        
+          <tr>
+            <td>
+            <code>id</code>
+            </td>
+            <td nowrap>
+            <code>string</code>
+            </td>
+            <td>
+            globally unique id of the store - should be suitable to
+use as a HTML id.
+            </td>
+          </tr>
+        
+          <tr>
+            <td>
+            <code>location</code>
+            </td>
+            <td nowrap>
+            <code>!<a href="//code.google.com/apis/maps/documentation/javascript/reference.html#LatLng" target="mapref">google.maps.LatLng</a></code>
+            </td>
+            <td>
+            location of the store.
+            </td>
+          </tr>
+        
+          <tr>
+            <td>
+            <code>features</code>
+            </td>
+            <td nowrap>
+            <code><a href="#storeLocator.FeatureSet">storeLocator.FeatureSet</a></code>
+            </td>
+            <td>
+            the features of this store.
+            </td>
+          </tr>
+        
+          <tr>
+            <td>
+            <code>props</code>
+            </td>
+            <td nowrap>
+            <code>Object.&lt;string, *&gt;=</code>
+            </td>
+            <td>
+            any additional properties.
+<p> Recommended fields are:
+     'title', 'address', 'phone', 'misc', 'web'. </p>
+            </td>
+          </tr>
+        
+      </table>
+      
+    
+    
+    
+      
+      <h3>Methods</h3>
+      
+      <table>
+      <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Returns</th>
+      </tr>
+      </thead>
+      
+        <tr>
+          <td>
+          <code>distanceTo(<code>point:<a href="//code.google.com/apis/maps/documentation/javascript/reference.html#LatLng" target="mapref">google.maps.LatLng</a></code>)</code>
+          </td>
+          <td>Gets the distance between this Store and a certain location.</td>
+          <td>
+            
+            
+              <code>number</code>
+              the distance from this store to a given point.
+            
+            
+          </td>
+        </tr>
+      
+        <tr>
+          <td>
+          <code>getDetails(<code></code>)</code>
+          </td>
+          <td>Gets additional details about this store.</td>
+          <td>
+            
+            
+              <code>Object</code>
+              additional properties of this store.
+            
+            
+          </td>
+        </tr>
+      
+        <tr>
+          <td>
+          <code>getFeatures(<code></code>)</code>
+          </td>
+          <td>Gets this store's features.</td>
+          <td>
+            
+            
+              <code><a href="#storeLocator.FeatureSet">storeLocator.FeatureSet</a></code>
+              this store's features.
+            
+            
+          </td>
+        </tr>
+      
+        <tr>
+          <td>
+          <code>getId(<code></code>)</code>
+          </td>
+          <td>Gets this store's ID.</td>
+          <td>
+            
+            
+              <code>string</code>
+              this store's ID.
+            
+            
+          </td>
+        </tr>
+      
+        <tr>
+          <td>
+          <code>getInfoPanelContent(<code></code>)</code>
+          </td>
+          <td>Gets the HTML content for this Store, suitable for use in suitable for use
+in the sidebar info panel.</td>
+          <td>
+            
+            
+              <code>string</code>
+              a HTML version of this store.
+            
+            
+          </td>
+        </tr>
+      
+        <tr>
+          <td>
+          <code>getInfoPanelItem(<code></code>)</code>
+          </td>
+          <td>Gets a HTML element suitable for use in the InfoPanel.</td>
+          <td>
+            
+            
+              <code>Node</code>
+              a HTML element.
+            
+            
+          </td>
+        </tr>
+      
+        <tr>
+          <td>
+          <code>getInfoWindowContent(<code></code>)</code>
+          </td>
+          <td>Gets the HTML content for this Store, suitable for use in an InfoWindow.</td>
+          <td>
+            
+            
+              <code>string</code>
+              a HTML version of this store.
+            
+            
+          </td>
+        </tr>
+      
+        <tr>
+          <td>
+          <code>getLocation(<code></code>)</code>
+          </td>
+          <td>Gets this store's location.</td>
+          <td>
+            
+            
+              <code><a href="//code.google.com/apis/maps/documentation/javascript/reference.html#LatLng" target="mapref">google.maps.LatLng</a></code>
+              this store's location.
+            
+            
+          </td>
+        </tr>
+      
+        <tr>
+          <td>
+          <code>getMarker(<code></code>)</code>
+          </td>
+          <td>Gets this store's Marker</td>
+          <td>
+            
+            
+              <code><a href="//code.google.com/apis/maps/documentation/javascript/reference.html#Marker" target="mapref">google.maps.Marker</a></code>
+              the store's marker.
+            
+            
+          </td>
+        </tr>
+      
+        <tr>
+          <td>
+          <code>hasAllFeatures(<code>features:<a href="#storeLocator.FeatureSet">storeLocator.FeatureSet</a></code>)</code>
+          </td>
+          <td>Checks whether this store has all the given features.</td>
+          <td>
+            
+            
+              <code>boolean</code>
+              true if the store has all features, false otherwise.
+            
+            
+          </td>
+        </tr>
+      
+        <tr>
+          <td>
+          <code>hasFeature(<code>feature:!<a href="#storeLocator.Feature">storeLocator.Feature</a></code>)</code>
+          </td>
+          <td>Checks whether this store has a particular feature.</td>
+          <td>
+            
+            
+              <code>boolean</code>
+              true if the store has the feature, false otherwise.
+            
+            
+          </td>
+        </tr>
+      
+        <tr>
+          <td>
+          <code>setMarker(<code>marker:<a href="//code.google.com/apis/maps/documentation/javascript/reference.html#Marker" target="mapref">google.maps.Marker</a></code>)</code>
+          </td>
+          <td>Sets this store's Marker.</td>
+          <td>
+            
+            <code>undefined</code>
+            
+          </td>
+        </tr>
+      
+      </table>
+    
+    
+    <h3>Events</h3>
+    <table>
+    <thead>
+    <tr>
+      <th>Name</th>
+      <th>Arguments</th>
+      <th width="100%">Description</th>
+    </tr>
+    </thead>
+    
+      <tr>
+        <td>
+        <code>marker_changed</code>
+        </td>
+        <td>
+        
+          <code>marker:<a href="//code.google.com/apis/maps/documentation/javascript/reference.html#Marker" target="mapref">google.maps.Marker</a></code>
+        
+        </td>
+        <td>Fired when the <code>Store</code>'s <code>marker</code> property changes.</td>
+      </tr>
+    
+    </table>
+    
+    </section>
+    
+    <section id="storeLocator.View">
+    <h2>storeLocator.View</h2>
+    <p>The main store locator object.</p>
+    
+      <h3>Example</h3>
+      <div class="example">
+      <pre>
+new <a href="#storeLocator.View">storeLocator.View</a>(map, dataFeed);
+</pre>
+<pre>
+var features = new <a href="#storeLocator.FeatureSet">storeLocator.FeatureSet</a>(feature1, feature2, feature3);
+new <a href="#storeLocator.View">storeLocator.View</a>(map, dataFeed, {
+  markerIcon: 'icon.png',
+  features: features,
+  geolocation: false
+});
+</pre>
+<pre>
+// refresh stores every 10 seconds, regardless of interaction on the map.
+var view = new <a href="#storeLocator.View">storeLocator.View</a>(map, dataFeed, {
+  updateOnPan: false
+});
+setTimeout(function() {
+  view.refreshView();
+}, 10000);
+</pre>
+<pre>
+// custom MarkerOptions, by overriding the createMarker method.
+view.createMarker = function(store) {
+  return new <a href="//code.google.com/apis/maps/documentation/javascript/reference.html#Marker" target="mapref">google.maps.Marker</a>({
+    position: store.getLocation(),
+    icon: store.getDetails().icon,
+    title: store.getDetails().title
+  });
+};
+</pre>
+      </div>
+    
+    
+      <h3>Constructor</h3>
+      
+      <table>
+        <thead>
+          <tr>
+          <th>Parameter</th>
+          <th>Type</th>
+          <th width="100%">Description</th>
+          </tr>
+        </thead>
+        
+          <tr>
+            <td>
+            <code>map</code>
+            </td>
+            <td nowrap>
+            <code><a href="//code.google.com/apis/maps/documentation/javascript/reference.html#Map" target="mapref">google.maps.Map</a></code>
+            </td>
+            <td>
+            the map to operate upon.
+            </td>
+          </tr>
+        
+          <tr>
+            <td>
+            <code>data</code>
+            </td>
+            <td nowrap>
+            <code><a href="#storeLocator.DataFeed">storeLocator.DataFeed</a></code>
+            </td>
+            <td>
+            the data feed to fetch stores from.
+            </td>
+          </tr>
+        
+          <tr>
+            <td>
+            <code>opt_options</code>
+            </td>
+            <td nowrap>
+            <code><a href="#storeLocator.ViewOptions">storeLocator.ViewOptions</a></code>
+            </td>
+            <td>
+            
+            </td>
+          </tr>
+        
+      </table>
+      
+    
+    
+    
+      
+      <h3>Methods</h3>
+      
+      <table>
+      <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Returns</th>
+      </tr>
+      </thead>
+      
+        <tr>
+          <td>
+          <code>addStoreToMap(<code>store:<a href="#storeLocator.Store">storeLocator.Store</a></code>)</code>
+          </td>
+          <td>Add a store to the map.</td>
+          <td>
+            
+            <code>undefined</code>
+            
+          </td>
+        </tr>
+      
+        <tr>
+          <td>
+          <code>clearMarkers(<code></code>)</code>
+          </td>
+          <td>Clears the visible markers on the map.</td>
+          <td>
+            
+            <code>undefined</code>
+            
+          </td>
+        </tr>
+      
+        <tr>
+          <td>
+          <code>createMarker(<code>store:<a href="#storeLocator.Store">storeLocator.Store</a></code>)</code>
+          </td>
+          <td>Create a marker for a store.</td>
+          <td>
+            
+            
+              <code><a href="//code.google.com/apis/maps/documentation/javascript/reference.html#Marker" target="mapref">google.maps.Marker</a></code>
+              a new marker.
+            
+            
+          </td>
+        </tr>
+      
+        <tr>
+          <td>
+          <code>getFeatureById(<code>id:string</code>)</code>
+          </td>
+          <td>Gets a feature by its id. Convenience method.</td>
+          <td>
+            
+            
+              <code><a href="#storeLocator.Feature">storeLocator.Feature</a>|<wbr>undefined</code>
+              The feature, if the id is valid.
+undefined if not.
+            
+            
+          </td>
+        </tr>
+      
+        <tr>
+          <td>
+          <code>getFeatures(<code></code>)</code>
+          </td>
+          <td>Gets all possible features for this View.</td>
+          <td>
+            
+            
+              <code><a href="#storeLocator.FeatureSet">storeLocator.FeatureSet</a></code>
+              All possible features.
+            
+            
+          </td>
+        </tr>
+      
+        <tr>
+          <td>
+          <code>getInfoWindow(<code>store:<a href="#storeLocator.Store">storeLocator.Store</a></code>)</code>
+          </td>
+          <td>Get a InfoWindow for a particular store.</td>
+          <td>
+            
+            
+              <code><a href="//code.google.com/apis/maps/documentation/javascript/reference.html#InfoWindow" target="mapref">google.maps.InfoWindow</a></code>
+              the store's InfoWindow.
+            
+            
+          </td>
+        </tr>
+      
+        <tr>
+          <td>
+          <code>getMap(<code></code>)</code>
+          </td>
+          <td>Gets the view's Map.</td>
+          <td>
+            
+            
+              <code><a href="//code.google.com/apis/maps/documentation/javascript/reference.html#Map" target="mapref">google.maps.Map</a></code>
+              the view's Map.
+            
+            
+          </td>
+        </tr>
+      
+        <tr>
+          <td>
+          <code>getMarker(<code>store:<a href="#storeLocator.Store">storeLocator.Store</a></code>)</code>
+          </td>
+          <td>Get a marker for a store. By default, this caches the value from
+createMarker(store)</td>
+          <td>
+            
+            
+              <code><a href="//code.google.com/apis/maps/documentation/javascript/reference.html#Marker" target="mapref">google.maps.Marker</a></code>
+              the marker.
+            
+            
+          </td>
+        </tr>
+      
+        <tr>
+          <td>
+          <code>highlight(<code>store:<a href="#storeLocator.Store">storeLocator.Store</a>, pan:boolean</code>)</code>
+          </td>
+          <td>Select a particular store.</td>
+          <td>
+            
+            <code>undefined</code>
+            
+          </td>
+        </tr>
+      
+        <tr>
+          <td>
+          <code>refreshView(<code></code>)</code>
+          </td>
+          <td>Refresh the map's view. This will fetch new data based on the map's bounds.</td>
+          <td>
+            
+            <code>undefined</code>
+            
+          </td>
+        </tr>
+      
+      </table>
+    
+    
+    <h3>Events</h3>
+    <table>
+    <thead>
+    <tr>
+      <th>Name</th>
+      <th>Arguments</th>
+      <th width="100%">Description</th>
+    </tr>
+    </thead>
+    
+      <tr>
+        <td>
+        <code>featureFilter_changed</code>
+        </td>
+        <td>
+        
+          <code>None</code>
+        
+        </td>
+        <td>Fired when the <code>View</code>'s <code>featureFilter</code> property
+changes.</td>
+      </tr>
+    
+      <tr>
+        <td>
+        <code>load</code>
+        </td>
+        <td>
+        
+          <code>None</code>
+        
+        </td>
+        <td>Fired when the <code>View</code> is loaded. This happens once immediately,
+then once more if geolocation is successful.</td>
+      </tr>
+    
+      <tr>
+        <td>
+        <code>selectedStore_changed</code>
+        </td>
+        <td>
+        
+          <code>store:<a href="#storeLocator.Store">storeLocator.Store</a></code>
+        
+        </td>
+        <td>Fired when the <code>View</code>'s <code>selectedStore</code> property
+changes. This happens after <code>highlight()</code> is called.</td>
+      </tr>
+    
+      <tr>
+        <td>
+        <code>stores_changed</code>
+        </td>
+        <td>
+        
+          <code>None</code>
+        
+        </td>
+        <td>Fired when the <code>View</code>'s <code>stores</code> property changes.</td>
+      </tr>
+    
+      <tr>
+        <td>
+        <code>updateOnPan_changed</code>
+        </td>
+        <td>
+        
+          <code>None</code>
+        
+        </td>
+        <td>Fired when the <code>View</code>'s <code>updateOnPan</code> property changes.</td>
+      </tr>
+    
+    </table>
+    
+    </section>
+    
+    <section id="storeLocator.ViewOptions">
+    <h2>storeLocator.ViewOptions</h2>
+    <p></p>
+    
+      <h3>Example</h3>
+      <div class="example">
+      see <a href="#storeLocator.View">storeLocator.View</a>
+      </div>
+    
+    
+    
+    
+    <h3>Properties/Constants</h3>
+    <table>
+    <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th width="100%">Description</th>
+    </tr>
+    </thead>
+    
+    <tr>
+      <td><code>updateOnPan</code></td>
+      <td><code>boolean</code></td>
+      <td>Whether the map should update stores in the visible area when the visible
+area changes. <code>refreshView()</code> will need to be called
+programatically. Defaults to true.</td>
+    </tr>
+    
+    <tr>
+      <td><code>geolocation</code></td>
+      <td><code>boolean</code></td>
+      <td>Whether the store locator should attempt to determine the user's location
+for the initial view. Defaults to true.</td>
+    </tr>
+    
+    <tr>
+      <td><code>features</code></td>
+      <td><code><a href="#storeLocator.FeatureSet">storeLocator.FeatureSet</a></code></td>
+      <td>All available store features. Defaults to empty FeatureSet.</td>
+    </tr>
+    
+    <tr>
+      <td><code>markerIcon</code></td>
+      <td><code>string|<wbr><a href="//code.google.com/apis/maps/documentation/javascript/reference.html#MarkerImage" target="mapref">google.maps.MarkerImage</a></code></td>
+      <td>The icon to use for markers representing stores.</td>
+    </tr>
+    
+    </table>
+    
+    
+    
+    </section>
+    
+  </body>
+</html>
