@@ -11,13 +11,15 @@ MedicareDataSource.prototype.getStores = function(bounds, features, callback) {
   var audioFeature = this.FEATURES_.getById('Audio-YES');
   var wheelchairFeature = this.FEATURES_.getById('Wheelchair-YES');
 
-  $.getJSON('//storelocator-demo.appspot.com/medicare?callback=?', {
-    lat: center.lat(),
-    lng: center.lng(),
+  $.getJSON('https://storelocator-go-demo.appspot.com/query?callback=?', {
+    n: bounds.getNorthEast().lat(),
+    e: bounds.getNorthEast().lng(),
+    s: bounds.getSouthWest().lat(),
+    w: bounds.getSouthWest().lng(),
     audio: features.contains(audioFeature) || '',
     access: features.contains(wheelchairFeature) || ''
   }, function(resp) {
-    console.log(resp.time);
+    console.log(resp.strips.length, resp.strips[0].length, resp.time, resp.data.length);
     callback(that.parse_(resp.data));
   });
 };
@@ -25,7 +27,6 @@ MedicareDataSource.prototype.getStores = function(bounds, features, callback) {
 MedicareDataSource.prototype.parse_ = function(data) {
   var stores = [];
   for (var i = 0, row; row = data[i]; i++) {
-    row = row.other;
     var features = new storeLocator.FeatureSet;
     features.add(this.FEATURES_.getById('Wheelchair-' + row.Wheelchair));
     features.add(this.FEATURES_.getById('Audio-' + row.Audio));
