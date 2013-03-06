@@ -19,8 +19,9 @@ MedicareDataSource.prototype.getStores = function(bounds, features, callback) {
     audio: features.contains(audioFeature) || '',
     access: features.contains(wheelchairFeature) || ''
   }, function(resp) {
-    console.log(resp.strips.length, resp.strips[0].length, resp.time, resp.data.length);
-    callback(that.parse_(resp.data));
+    var stores = that.parse_(resp.data);
+    that.sortByDistance_(center, stores);
+    callback(stores);
   });
 };
 
@@ -77,4 +78,18 @@ MedicareDataSource.prototype.join_ = function(arr, sep) {
     arr[i] && parts.push(arr[i]);
   }
   return parts.join(sep);
+};
+
+/**
+ * Sorts a list of given stores by distance from a point in ascending order.
+ * Directly manipulates the given array (has side effects).
+ * @private
+ * @param {google.maps.LatLng} latLng the point to sort from.
+ * @param {!Array.<!storeLocator.Store>} stores  the stores to sort.
+ */
+MedicareDataSource.prototype.sortByDistance_ = function(latLng,
+    stores) {
+  stores.sort(function(a, b) {
+    return a.distanceTo(latLng) - b.distanceTo(latLng);
+  });
 };
