@@ -12,6 +12,8 @@ MedicareDataSource.prototype.getStores = function(bounds, features, callback) {
   var wheelchairFeature = this.FEATURES_.getById('Wheelchair-YES');
 
   $.getJSON('https://storelocator-go-demo.appspot.com/query?callback=?', {
+    lat: center.lat(),
+    lng: center.lng(),
     n: bounds.getNorthEast().lat(),
     e: bounds.getNorthEast().lng(),
     s: bounds.getSouthWest().lat(),
