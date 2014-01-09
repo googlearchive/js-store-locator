@@ -292,7 +292,7 @@ storeLocator.View.prototype.refreshView = function() {
   var that = this;
 
   this.data_.getStores(this.getMap().getBounds(),
-      (/** @type {storeLocator.FeatureSet} */ this.get('featureFilter')),
+      /** @type {storeLocator.FeatureSet} */ (this.get('featureFilter')),
       function(stores) {
         var oldStores = that.get('stores');
         if (oldStores) {
@@ -328,9 +328,9 @@ storeLocator.View.prototype.getMap = function() {
 /**
  * Select a particular store.
  * @param {storeLocator.Store} store the store to highlight.
- * @param {boolean} pan if panning to the store on the map is desired.
+ * @param {boolean=} opt_pan if panning to the store on the map is desired.
  */
-storeLocator.View.prototype.highlight = function(store, pan) {
+storeLocator.View.prototype.highlight = function(store, opt_pan) {
   var infoWindow = this.getInfoWindow(store);
   if (store) {
     var infoWindow = this.getInfoWindow(store);
@@ -340,7 +340,7 @@ storeLocator.View.prototype.highlight = function(store, pan) {
       infoWindow.setPosition(store.getLocation());
       infoWindow.open(this.getMap());
     }
-    if (pan) {
+    if (opt_pan) {
       this.getMap().panTo(store.getLocation());
     }
     if (this.getMap().getStreetView().getVisible()) {

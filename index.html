@@ -47,9 +47,12 @@
     <ol>
       <li><a href="examples/panel.html">panel.html</a> &ndash; A simple store
         locator, including panel. Data is fetched from a static CSV file.</li>
-        <li><a href="examples/dynamic.html">dynamic.html</a> &ndash; Same as
-        above, except stores are fetched dynamically from a Google App Engine
-        app.</li>
+      <li><a href="examples/dynamic.html">dynamic.html</a> &ndash; Same as
+        above, except stores are fetched dynamically from a JSONP web service.
+      </li>
+      <li><a href="examples/gme.html">gme.html</a> &ndash; Same as
+        above, except stores are fetched dynamically from Google Maps Engine.
+      </li>
       <li><a href="examples/custom.html">custom.html</a> &ndash; Various
         customisations to the default UI including custom markers and info
         window.</li>
@@ -67,8 +70,8 @@
 
     <h2>Quick Start</h2>
     <p>
-      To get started, include the <a href="js/store-locator.compiled.js">
-      <code>store-locator.compiled.js</code></a> file on your HTML page. A
+      To get started, include the <a href="dist/store-locator.min.js">
+      <code>store-locator.min.js</code></a> file on your HTML page. A
       set of <a href="css/storelocator.css">CSS styles</a> are also available,
       which provide styling for store details and side panel.
     </p>
@@ -84,18 +87,16 @@
       update. A simple example of a <code>DataFeed</code> can be found in the
       <a href="reference.html#storeLocator.DataFeed">reference</a>.
     </p>
-<script type="text/javascript">
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-12846745-17']);
+      _gaq.push(['_trackPageview']);
 
-  var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', 'UA-12846745-17']);
-  _gaq.push(['_trackPageview']);
-
-  (function() {
-    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-  })();
-
-</script>
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
   </body>
 </html>

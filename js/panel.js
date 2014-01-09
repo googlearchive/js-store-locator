@@ -86,7 +86,8 @@ storeLocator.Panel.prototype.init_ = function() {
       this.initAutocomplete_();
     } else {
       this.filter_.submit(function() {
-        that.searchPosition($('input', that.locationSearch_).val());
+        var search = $('input', that.locationSearch_).val();
+        that.searchPosition(/** @type {string} */(search));
       });
     }
     this.filter_.submit(function() {
@@ -94,9 +95,6 @@ storeLocator.Panel.prototype.init_ = function() {
     });
 
     google.maps.event.addListener(this, 'geocode', function(place) {
-      if (that.searchPositionTimeout_) {
-        window.clearTimeout(that.searchPositionTimeout_);
-      }
       if (!place.geometry) {
         that.searchPosition(place.name);
         return;
@@ -135,7 +133,7 @@ storeLocator.Panel.prototype.init_ = function() {
     this.filter_.append(this.featureFilter_);
     this.featureFilter_.find('input').change(function() {
       var feature = $(this).data('feature');
-      that.toggleFeatureFilter_(feature);
+      that.toggleFeatureFilter_(/** @type {storeLocator.Feature} */(feature));
       that.get('view').refreshView();
     });
   }

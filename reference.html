@@ -8,7 +8,7 @@
         padding: 1em;
         max-width: 70em;
         min-width: inherit;
-        padding-left: 15em;
+        padding-left: 20em;
       }
       .docs section h2 {
         font-weight: bold;
@@ -36,6 +36,10 @@
         <li><a href="#storeLocator.Feature">Feature</a></li>
         
         <li><a href="#storeLocator.FeatureSet">FeatureSet</a></li>
+        
+        <li><a href="#storeLocator.GMEDataFeed">GMEDataFeed</a></li>
+        
+        <li><a href="#storeLocator.GMEDataFeedOptions">GMEDataFeedOptions</a></li>
         
         <li><a href="#storeLocator.Panel">Panel</a></li>
         
@@ -363,6 +367,113 @@ Else, removes the feature from the set.</td>
         </tr>
       
       </table>
+    
+    
+    </section>
+    
+    <section id="storeLocator.GMEDataFeed">
+    <h2>storeLocator.GMEDataFeed</h2>
+    <p>A DataFeed where stores are provided by Google Maps Engine.
+<p>
+Note: the table that contains the stores needs to be publicly accessible.</p>
+    
+      <h3>Example</h3>
+      <div class="example">
+      <pre>
+var dataFeed = new <a href="#storeLocator.GMEDataFeed">storeLocator.GMEDataFeed</a>({
+  tableId: '12421761926155747447-06672618218968397709',
+  apiKey: 'AIzaSyAtunhRg0VTElV-P7n4Agpm9tYlABQDCAM',
+  propertiesModifier: function(props) {
+    return {
+      id: transformId(props.store_id),
+      title: props.store_title
+    };
+  }
+});
+new <a href="#storeLocator.View">storeLocator.View</a>(map, dataFeed);
+</pre>
+      </div>
+    
+    
+      <h3>Constructor</h3>
+      
+      <table>
+        <thead>
+          <tr>
+          <th>Parameter</th>
+          <th>Type</th>
+          <th width="100%">Description</th>
+          </tr>
+        </thead>
+        
+          <tr>
+            <td>
+            <code>opts</code>
+            </td>
+            <td nowrap>
+            <code>!<a href="#storeLocator.GMEDataFeedOptions">storeLocator.GMEDataFeedOptions</a></code>
+            </td>
+            <td>
+            the table ID, API key and
+a transformation function for feature/store properties.
+            </td>
+          </tr>
+        
+      </table>
+      
+    
+    
+    
+    
+    </section>
+    
+    <section id="storeLocator.GMEDataFeedOptions">
+    <h2>storeLocator.GMEDataFeedOptions</h2>
+    <p></p>
+    
+      <h3>Example</h3>
+      <div class="example">
+      see <a href="#storeLocator.GMEDataFeed">storeLocator.GMEDataFeed</a>
+      </div>
+    
+    
+    
+    
+    <h3>Properties/Constants</h3>
+    <table>
+    <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th width="100%">Description</th>
+    </tr>
+    </thead>
+    
+    <tr>
+      <td><code>tableId</code></td>
+      <td><code>string</code></td>
+      <td>The table's asset ID.</td>
+    </tr>
+    
+    <tr>
+      <td><code>apiKey</code></td>
+      <td><code>string</code></td>
+      <td>The API key to use for all requests.</td>
+    </tr>
+    
+    <tr>
+      <td><code>propertiesModifier</code></td>
+      <td><code>?(function(Object): Object)</code></td>
+      <td>A transformation function. The first argument is the feature's properties.
+Return an object useful for the <code>"props"</code> argument in the
+storeLocator.Store constructor. The default properties modifier
+function passes the feature straight through.
+<p>
+Note: storeLocator.GMEDataFeed expects an <code>"id"</code> property.</td>
+    </tr>
+    
+    </table>
+    
     
     
     </section>
@@ -1227,7 +1338,7 @@ createMarker(store)</td>
       
         <tr>
           <td>
-          <code>highlight(<code>store:<a href="#storeLocator.Store">storeLocator.Store</a>, pan:boolean</code>)</code>
+          <code>highlight(<code>store:<a href="#storeLocator.Store">storeLocator.Store</a>, opt_pan:boolean=</code>)</code>
           </td>
           <td>Select a particular store.</td>
           <td>
@@ -1384,19 +1495,17 @@ for the initial view. Defaults to true.</td>
     
     </section>
     
-<script type="text/javascript">
 
-  var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', 'UA-12846745-17']);
-  _gaq.push(['_trackPageview']);
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-12846745-17']);
+      _gaq.push(['_trackPageview']);
 
-  (function() {
-    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-  })();
-
-</script>
-    
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
   </body>
 </html>
