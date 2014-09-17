@@ -1,4 +1,19 @@
 (function(){
+/**
+ * Copyright 2014 Google Inc. All Rights Reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 var b=void 0,g;
 function k(a){this.extend(k,google.maps.OverlayView);this.b=[];this.d=null;this.g=100;this.m=!1;a=a||{};if(a.backgroundColor==b)a.backgroundColor=this.z;if(a.borderColor==b)a.borderColor=this.A;if(a.borderRadius==b)a.borderRadius=this.B;if(a.borderWidth==b)a.borderWidth=this.C;if(a.padding==b)a.padding=this.F;if(a.arrowPosition==b)a.arrowPosition=this.u;a.disableAutoPan==b&&(a.disableAutoPan=!1);a.disableAnimation==b&&(a.disableAnimation=!1);if(a.minWidth==b)a.minWidth=this.D;if(a.shadowStyle==b)a.shadowStyle=
 this.G;if(a.arrowSize==b)a.arrowSize=this.v;if(a.arrowStyle==b)a.arrowStyle=this.w;l(this);this.setValues(a)}window.InfoBubble=k;g=k.prototype;g.v=15;g.w=0;g.G=1;g.D=50;g.u=50;g.F=10;g.C=1;g.A="#ccc";g.B=10;g.z="#fff";g.extend=function(a,c){return function(a){for(var c in a.prototype)this.prototype[c]=a.prototype[c];return this}.apply(a,[c])};
