@@ -2,7 +2,7 @@
 <html>
   <head>
     <title>Store Locator Reference Documentation</title>
-    <style type="text/css">
+    <style>
       @import 'https://developers.google.com/_static/css/screen-docs.css';
       body {
         padding: 1em;
@@ -21,11 +21,22 @@
         background: white;
       }
     </style>
+    <script>
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-12846745-20']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' === document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
   </head>
   <body class="docs">
     <h1 class="page-title">Store Locator Reference Documentation</h1>
     <p class="note">Types are documented using <a target="_blank"
-        href="//code.google.com/closure/compiler/docs/js-for-compiler.html#types">
+        href="https://developers.google.com/closure/compiler/docs/js-for-compiler#types">
       Closure Compiler type expressions</a>.</p>
     <section id="toc">
       <h3>Classes</h3>
@@ -93,7 +104,7 @@ new <a href="#storeLocator.View">storeLocator.View</a>(map, new SimpleStaticFeed
       
         <tr>
           <td>
-          <code>getStores(<code>bounds:<a href="//code.google.com/apis/maps/documentation/javascript/reference.html#LatLngBounds" target="mapref">google.maps.LatLngBounds</a>, features:<a href="#storeLocator.FeatureSet">storeLocator.FeatureSet</a>, callback:function(Array.&lt;!<a href="#storeLocator.Store">storeLocator.Store</a>&gt;)</code>)</code>
+          <code>getStores(<code>bounds:<a href="https://developers.google.com/maps/documentation/javascript/reference#LatLngBounds" target="mapref">google.maps.LatLngBounds</a>, features:<a href="#storeLocator.FeatureSet">storeLocator.FeatureSet</a>, callback:function(Array.&lt;!<a href="#storeLocator.Store">storeLocator.Store</a>&gt;)</code>)</code>
           </td>
           <td>Fetch stores, based on bounds to search within, and features to filter on.</td>
           <td>
@@ -491,7 +502,7 @@ var panel = new <a href="#storeLocator.Panel">storeLocator.Panel</a>(container, 
   view: view,
   locationSearchLabel: 'Location:'
 });
-<a href="//code.google.com/apis/maps/documentation/javascript/reference.html#event" target="mapref">google.maps.event.addListener</a>(panel, 'geocode', function(result) {
+<a href="https://developers.google.com/maps/documentation/javascript/reference#event" target="mapref">google.maps.event.addListener</a>(panel, 'geocode', function(result) {
   geocodeMarker.setPosition(result.geometry.location);
 });
 </pre>
@@ -630,7 +641,7 @@ changes.</td>
         </td>
         <td>
         
-          <code>result:<a href="//code.google.com/apis/maps/documentation/javascript/reference.html#PlaceResult" target="mapref">google.maps.PlaceResult</a>|<wbr><a href="//code.google.com/apis/maps/documentation/javascript/reference.html#GeocoderResult" target="mapref">google.maps.GeocoderResult</a></code>
+          <code>result:<a href="https://developers.google.com/maps/documentation/javascript/reference#PlaceResult" target="mapref">google.maps.PlaceResult</a>|<wbr><a href="https://developers.google.com/maps/documentation/javascript/reference#GeocoderResult" target="mapref">google.maps.GeocoderResult</a></code>
         
         </td>
         <td>Fired when searchPosition has been called. This happens when the user has
@@ -805,7 +816,7 @@ new <a href="#storeLocator.View">storeLocator.View</a>(map, dataFeed);
       <h3>Example</h3>
       <div class="example">
       <pre>
-var latLng = new <a href="//code.google.com/apis/maps/documentation/javascript/reference.html#LatLng" target="mapref">google.maps.LatLng</a>(40.7585, -73.9861);
+var latLng = new <a href="https://developers.google.com/maps/documentation/javascript/reference#LatLng" target="mapref">google.maps.LatLng</a>(40.7585, -73.9861);
 var store = new <a href="#storeLocator.Store">storeLocator.Store</a>('times_square', latLng, null);
 </pre>
 <pre>
@@ -860,7 +871,7 @@ use as a HTML id.
             <code>location</code>
             </td>
             <td nowrap>
-            <code>!<a href="//code.google.com/apis/maps/documentation/javascript/reference.html#LatLng" target="mapref">google.maps.LatLng</a></code>
+            <code>!<a href="https://developers.google.com/maps/documentation/javascript/reference#LatLng" target="mapref">google.maps.LatLng</a></code>
             </td>
             <td>
             location of the store.
@@ -912,7 +923,7 @@ use as a HTML id.
       
         <tr>
           <td>
-          <code>distanceTo(<code>point:<a href="//code.google.com/apis/maps/documentation/javascript/reference.html#LatLng" target="mapref">google.maps.LatLng</a></code>)</code>
+          <code>distanceTo(<code>point:<a href="https://developers.google.com/maps/documentation/javascript/reference#LatLng" target="mapref">google.maps.LatLng</a></code>)</code>
           </td>
           <td>Gets the distance between this Store and a certain location.</td>
           <td>
@@ -1024,7 +1035,7 @@ in the sidebar info panel.</td>
           <td>
             
             
-              <code><a href="//code.google.com/apis/maps/documentation/javascript/reference.html#LatLng" target="mapref">google.maps.LatLng</a></code>
+              <code><a href="https://developers.google.com/maps/documentation/javascript/reference#LatLng" target="mapref">google.maps.LatLng</a></code>
               this store's location.
             
             
@@ -1039,7 +1050,7 @@ in the sidebar info panel.</td>
           <td>
             
             
-              <code><a href="//code.google.com/apis/maps/documentation/javascript/reference.html#Marker" target="mapref">google.maps.Marker</a></code>
+              <code><a href="https://developers.google.com/maps/documentation/javascript/reference#Marker" target="mapref">google.maps.Marker</a></code>
               the store's marker.
             
             
@@ -1078,7 +1089,7 @@ in the sidebar info panel.</td>
       
         <tr>
           <td>
-          <code>setMarker(<code>marker:<a href="//code.google.com/apis/maps/documentation/javascript/reference.html#Marker" target="mapref">google.maps.Marker</a></code>)</code>
+          <code>setMarker(<code>marker:<a href="https://developers.google.com/maps/documentation/javascript/reference#Marker" target="mapref">google.maps.Marker</a></code>)</code>
           </td>
           <td>Sets this store's Marker.</td>
           <td>
@@ -1107,7 +1118,7 @@ in the sidebar info panel.</td>
         </td>
         <td>
         
-          <code>marker:<a href="//code.google.com/apis/maps/documentation/javascript/reference.html#Marker" target="mapref">google.maps.Marker</a></code>
+          <code>marker:<a href="https://developers.google.com/maps/documentation/javascript/reference#Marker" target="mapref">google.maps.Marker</a></code>
         
         </td>
         <td>Fired when the <code>Store</code>'s <code>marker</code> property changes.</td>
@@ -1146,7 +1157,7 @@ setTimeout(function() {
 <pre>
 // custom MarkerOptions, by overriding the createMarker method.
 view.createMarker = function(store) {
-  return new <a href="//code.google.com/apis/maps/documentation/javascript/reference.html#Marker" target="mapref">google.maps.Marker</a>({
+  return new <a href="https://developers.google.com/maps/documentation/javascript/reference#Marker" target="mapref">google.maps.Marker</a>({
     position: store.getLocation(),
     icon: store.getDetails().icon,
     title: store.getDetails().title
@@ -1172,7 +1183,7 @@ view.createMarker = function(store) {
             <code>map</code>
             </td>
             <td nowrap>
-            <code><a href="//code.google.com/apis/maps/documentation/javascript/reference.html#Map" target="mapref">google.maps.Map</a></code>
+            <code><a href="https://developers.google.com/maps/documentation/javascript/reference#Map" target="mapref">google.maps.Map</a></code>
             </td>
             <td>
             the map to operate upon.
@@ -1252,7 +1263,7 @@ view.createMarker = function(store) {
           <td>
             
             
-              <code><a href="//code.google.com/apis/maps/documentation/javascript/reference.html#Marker" target="mapref">google.maps.Marker</a></code>
+              <code><a href="https://developers.google.com/maps/documentation/javascript/reference#Marker" target="mapref">google.maps.Marker</a></code>
               a new marker.
             
             
@@ -1298,7 +1309,7 @@ undefined if not.
           <td>
             
             
-              <code><a href="//code.google.com/apis/maps/documentation/javascript/reference.html#InfoWindow" target="mapref">google.maps.InfoWindow</a></code>
+              <code><a href="https://developers.google.com/maps/documentation/javascript/reference#InfoWindow" target="mapref">google.maps.InfoWindow</a></code>
               the store's InfoWindow.
             
             
@@ -1313,7 +1324,7 @@ undefined if not.
           <td>
             
             
-              <code><a href="//code.google.com/apis/maps/documentation/javascript/reference.html#Map" target="mapref">google.maps.Map</a></code>
+              <code><a href="https://developers.google.com/maps/documentation/javascript/reference#Map" target="mapref">google.maps.Map</a></code>
               the view's Map.
             
             
@@ -1329,7 +1340,7 @@ createMarker(store)</td>
           <td>
             
             
-              <code><a href="//code.google.com/apis/maps/documentation/javascript/reference.html#Marker" target="mapref">google.maps.Marker</a></code>
+              <code><a href="https://developers.google.com/maps/documentation/javascript/reference#Marker" target="mapref">google.maps.Marker</a></code>
               the marker.
             
             
@@ -1485,7 +1496,7 @@ for the initial view. Defaults to true.</td>
     
     <tr>
       <td><code>markerIcon</code></td>
-      <td><code>string|<wbr><a href="//code.google.com/apis/maps/documentation/javascript/reference.html#MarkerImage" target="mapref">google.maps.MarkerImage</a></code></td>
+      <td><code>string|<wbr><a href="https://developers.google.com/maps/documentation/javascript/reference#MarkerImage" target="mapref">google.maps.MarkerImage</a></code></td>
       <td>The icon to use for markers representing stores.</td>
     </tr>
     
@@ -1494,18 +1505,5 @@ for the initial view. Defaults to true.</td>
     
     
     </section>
-    
-
-    <script type="text/javascript">
-      var _gaq = _gaq || [];
-      _gaq.push(['_setAccount', 'UA-12846745-17']);
-      _gaq.push(['_trackPageview']);
-
-      (function() {
-        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-      })();
-    </script>
   </body>
 </html>
