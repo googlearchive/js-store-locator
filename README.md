@@ -43,6 +43,12 @@ A `DataFeed` is an object with the function `getStores`. This function is called
 
 Want to contribute? Check out the [contributing guide](CONTRIBUTING.md)!
 
+## Compiling the project
+
+    $ ./gradlew assemble
+
+    > gradlew.bat assemble
+
 ## License
 
 Copyright 2014 Google Inc. All rights reserved.
