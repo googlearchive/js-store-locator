@@ -1,0 +1,43 @@
+plugins {
+  id "com.eriwen.gradle.js" version "1.12.1"
+}
+
+javascript.source {
+  prod.js {
+    srcDir "js"
+    include "*.js"
+  }
+}
+
+minifyJs {
+  source = javascript.source.prod.js
+  dest = file("${buildDir}/store-locator.unwrapped.min.js")
+  closure.externs = fileTree(dir: "externs") + files("exports.js")
+}
+
+task wrap(type: WrapFileTask, dependsOn: minifyJs) {
+  inFile = minifyJs.dest
+  outFile = file("dist/store-locator.min.js")
+  wrapper = '(function($){%output%}(jQuery);'
+}
+
+task assemble(dependsOn: wrap)
+
+// TODO(cbro): extract out into a gradle plugin.
+class WrapFileTask extends DefaultTask {
+  @Input
+  String wrapper = '(function(){%output%})()'
+
+  @Input
+  File inFile
+
+  @Input
+  File outFile
+
+  @TaskAction
+  void wrap() {
+    outFile.withWriter { out ->
+      out.write(wrapper.split('%output%').join(inFile.text))
+    }
+  }
+}
