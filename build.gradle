@@ -18,7 +18,7 @@ minifyJs {
 task wrap(type: WrapFileTask, dependsOn: minifyJs) {
   inFile = minifyJs.dest
   outFile = file("dist/store-locator.min.js")
-  wrapper = '(function($){%output%}(jQuery);'
+  wrapper = '(function($){%output%})(jQuery);'
 }
 
 task assemble(dependsOn: wrap)
