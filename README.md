@@ -2,7 +2,7 @@ Store Locator Library for the Google Maps JavaScript API v3
 ==============
 
 This library enables developers to easily build store locator-type applications using the Google Maps JavaScript API v3.
-![Analytics](https://ga-beacon.appspot.com/UA-12846745-20/js-store-locator/readme?pixel)
+![Analytics](https://maps-ga-beacon.appspot.com/UA-12846745-20/js-store-locator/readme?pixel)
 
 The library provides the following features:
 
