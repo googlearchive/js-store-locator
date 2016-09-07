@@ -1,3 +1,5 @@
+**Please note:** This repository is not currently maintained, and is kept for historical purpose only.
+
 Store Locator Library for the Google Maps JavaScript API v3
 ==============
 
