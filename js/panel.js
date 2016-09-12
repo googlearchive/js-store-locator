@@ -24,11 +24,13 @@
 /**
  * An info panel, to complement the map view.
  * Provides a list of stores, location search, feature filter, and directions.
+ * You can control how many stores are rendered in the list with listMaximum.
  * @example <pre>
  * var container = document.getElementById('panel');
  * var panel = new storeLocator.Panel(container, {
  *   view: view,
- *   locationSearchLabel: 'Location:'
+ *   locationSearchLabel: 'Location:',
+ *   listMaximum: 20
  * });
  * google.maps.event.addListener(panel, 'geocode', function(result) {
  *   geocodeMarker.setPosition(result.geometry.location);
@@ -48,6 +50,7 @@ storeLocator.Panel = function(el, opt_options) {
       'locationSearchLabel': 'Where are you?',
       'featureFilter': true,
       'directions': true,
+      'listMaximum': 10,
       'view': null
     }, opt_options);
 
@@ -343,8 +346,7 @@ storeLocator.Panel.prototype.stores_changed = function() {
     view.highlight(this['store'], true);
   };
 
-  // TODO(cbro): change 10 to a setting/option
-  for (var i = 0, ii = Math.min(10, stores.length); i < ii; i++) {
+  for (var i = 0, ii = Math.min(this.settings_['listMaximum'] || 10, stores.length); i < ii; i++) {
     var storeLi = stores[i].getInfoPanelItem();
     storeLi['store'] = stores[i];
     if (selectedStore && stores[i].getId() == selectedStore.getId()) {

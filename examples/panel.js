@@ -15,6 +15,7 @@ google.maps.event.addDomListener(window, 'load', function() {
   });
 
   new storeLocator.Panel(panelDiv, {
-    view: view
+    view: view,
+    listMaximum: 20
   });
 });
